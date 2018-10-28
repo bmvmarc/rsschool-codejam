@@ -2,7 +2,7 @@ var assert = require('assert');
 
 const sumOfOther = require('../src/sumOfOther.js');
 const make = require('../src/make.js');
-//const sumOfOther = require('../src/sumOfOther.js');
+const recursion = require('../src/recursion.js');
 
 
 describe('Array', function() {
@@ -44,4 +44,25 @@ describe('Array', function() {
         });
     });
 
+
+    describe('#recursion()', function() {
+
+        let tree = {"value":100,"left":{"value":90,"left":{"value":70},"right":{"value":99}},
+            "right":{"value":120,"left":{"value":110},"right":{"value":130}}};
+
+        it('should return [[100], [90, 120], [70,99,110,130]]', function() {
+            assert.deepEqual(recursion(tree), [[100], [90, 120], [70,99,110,130]]);
+        });
+
+        let tree1 = {"value":666};
+        it('should return [[666]]', function() {
+            assert.deepEqual(recursion(tree1), [[666]]);
+        });
+
+        let tree2 = {"value":100,"left":{"value":90,"left":{"value":70},"right":{"value":99}}};
+
+        it('should return [[100], [90], [70,99]]', function() {
+            assert.deepEqual(recursion(tree2), [[100], [90], [70,99]]);
+        });
+    });
 });
